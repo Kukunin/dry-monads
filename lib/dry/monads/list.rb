@@ -60,6 +60,11 @@ module Dry
         value.reverse.reduce(acc) { |a, b| yield(b, a) }
       end
 
+      def inspect
+        "List#{ value.to_s }"
+      end
+      alias_method :to_s, :inspect
+
       module Mixin
         List = List
         L = List

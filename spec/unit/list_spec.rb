@@ -71,4 +71,16 @@ RSpec.describe(Dry::Monads::List) do
       expect(list[3, 4].foldr(2) { |acc, i| acc ** i }).to eql(43046721)
     end
   end
+
+  describe '#inspect' do
+    it 'returns a string representation' do
+      expect(list[1, 2, 3].inspect).to eql('List[1, 2, 3]')
+    end
+  end
+
+  describe '#to_s' do
+    it 'is an alias for #inspect' do
+      expect(list[1, 2, 3].to_s).to eql('List[1, 2, 3]')
+    end
+  end
 end
