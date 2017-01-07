@@ -69,6 +69,11 @@ module Dry
         value.dup
       end
 
+      def filter(&block)
+        List.new(value.select(&block))
+      end
+      alias_method :select, :filter
+
       module Mixin
         List = List
         L = List

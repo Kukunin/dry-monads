@@ -91,4 +91,16 @@ RSpec.describe(Dry::Monads::List) do
       expect(list[1, 2, 3].to_s).to eql('List[1, 2, 3]')
     end
   end
+
+  describe '#filter' do
+    it 'filters list values with a predicate' do
+      expect(list[1, 2, 3].filter { |x| x % 2 == 1 }).to eql(list[1, 3])
+    end
+  end
+
+  describe '#select' do
+    it 'is an alias for #filter' do
+      expect(list[1, 2, 3].select { |x| x % 2 == 1 }).to eql(list[1, 3])
+    end
+  end
 end
