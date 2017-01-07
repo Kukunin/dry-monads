@@ -1,4 +1,5 @@
 require 'dry/equalizer'
+require 'dry/monads/maybe'
 
 module Dry
   module Monads
@@ -73,6 +74,14 @@ module Dry
         List.new(value.select(&block))
       end
       alias_method :select, :filter
+
+      def [](idx)
+        value[idx]
+      end
+
+      def get(index)
+        Maybe.lift(value.at(index))
+      end
 
       module Mixin
         List = List
