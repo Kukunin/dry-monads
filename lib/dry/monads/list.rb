@@ -65,6 +65,10 @@ module Dry
       end
       alias_method :to_s, :inspect
 
+      def to_a
+        value.dup
+      end
+
       module Mixin
         List = List
         L = List

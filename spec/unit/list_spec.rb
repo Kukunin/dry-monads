@@ -40,6 +40,14 @@ RSpec.describe(Dry::Monads::List) do
     end
   end
 
+  describe '#to_a' do
+    it 'coerces to an array' do
+      arr = [1, 2, 3]
+      expect(list.new(arr).to_a).to eql([1, 2, 3])
+      expect(list.new(arr).to_a).not_to be(arr)
+    end
+  end
+
   describe '#foldl' do
     it 'folds the list' do
       expect(list[1, 2, 3].foldl(0) { |acc, i| acc + i }).to eql(6)
