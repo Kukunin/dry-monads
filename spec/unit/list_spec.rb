@@ -39,4 +39,36 @@ RSpec.describe(Dry::Monads::List) do
       expect(list[1, 2, 3].value).to eql([1, 2, 3])
     end
   end
+
+  describe '#foldl' do
+    it 'folds the list' do
+      expect(list[1, 2, 3].foldl(0) { |acc, i| acc + i }).to eql(6)
+    end
+
+    it 'folds the list from the left' do
+      expect(list[3, 4].foldl(2) { |acc, i| acc ** i }).to eql(4096)
+    end
+  end
+
+  describe '#reduce' do
+    it 'is an alias for #foldl' do
+      expect(list[3, 4].reduce(2) { |acc, i| acc ** i }).to eql(4096)
+    end
+  end
+
+  describe '#inject' do
+    it 'is an alias for #foldl' do
+      expect(list[3, 4].inject(2) { |acc, i| acc ** i }).to eql(4096)
+    end
+  end
+
+  describe '#foldr' do
+    it 'folds the list' do
+      expect(list[1, 2, 3].foldr(0) { |acc, i| acc + i }).to eql(6)
+    end
+
+    it 'folds the list from the right' do
+      expect(list[3, 4].foldr(2) { |acc, i| acc ** i }).to eql(43046721)
+    end
+  end
 end

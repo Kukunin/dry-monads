@@ -50,6 +50,16 @@ module Dry
         List.new(value + other.value)
       end
 
+      def foldl(acc, &block)
+        value.reduce(acc, &block)
+      end
+      alias_method :reduce, :foldl
+      alias_method :inject, :foldl
+
+      def foldr(acc)
+        value.reverse.reduce(acc) { |a, b| yield(b, a) }
+      end
+
       module Mixin
         List = List
         L = List
